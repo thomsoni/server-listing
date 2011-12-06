@@ -52,7 +52,7 @@
 
 <p>
   <b>Record Was Last Updated:</b>
-  <%= @server.updated_at %>
+  <%= @server.updated_at.strftime('%m/%d/%Y %H:%M:%S') %>
 </p>
 
 <%= link_to 'Edit', edit_server_path(@server) %> |
