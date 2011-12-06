@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<div class="nav_header">
+  <h1><%= @server.name %></h1>
+</div>
+
+<% if @server.test_server == 1 %>
+  <div class="test_flag">
+    This is a Test server
+  </div>
+<% end %>
+
+<p>
+  <b>IP:</b>
+  <%= @server.ip %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @server.location %>
+</p>
+
+<p>
+  <b>Operating System:</b>
+  <%= @server.osver %>
+</p>
+
+<p>
+  <b>SQL Version:</b>
+  <%= @server.sqlver %>
+</p>
+
+<p>
+  <b>VM Location:</b>
+  <%= @server.vmloc %>
+</p>
+
+<p>
+  <b>Server Function:</b>
+  <%= @server.function %>
+</p>
+
+<p>
+  <b>Dependencies:</b>
+  <%= @server.dependencies %>
+</p>
+
+<p>
+  <b>Supported By:</b>
+  <%= @server.supported_by %>
+</p>
+
+<p>
+  <b>Record Was Last Updated:</b>
+  <%= @server.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_server_path(@server) %> |
+<%= link_to 'Back', servers_path %>

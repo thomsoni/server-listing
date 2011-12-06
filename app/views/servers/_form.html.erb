@@ -1,0 +1,54 @@
+<%= form_for(@server) do |f| %>
+  <% if @server.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@server.errors.count, "error") %> prohibited this server from being saved:</h2>
+
+      <ul>
+      <% @server.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :"Test Server?" %><br />
+    <%= f.check_box :test_server %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br />
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :"Operating System" %><br />
+    <%= f.text_field :osver %>
+  </div>
+  <div class="field">
+    <%= f.label :"SQL Server Version" %><br />
+    <%= f.text_field :sqlver %>
+  </div>
+  <div class="field">
+    <%= f.label :"Server Function" %><br />
+    <%= f.text_field :function %>
+  </div>
+  <div class="field">
+    <%= f.label :"Dependencies" %><br />
+    <%= f.text_field :dependencies %>
+  </div>
+  <div class="field">
+    <%= f.label :"Supported By" %><br />
+    <%= f.text_field :supported_by %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,67 @@
+// Place all the styles related to the Servers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.list {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td {
+	padding: 2px;
+	border: 0px;
+}
+
+td a {
+	text-decoration: none;
+}
+
+tr.even {
+	background-color: #BFD0F0;
+}
+
+tr.even:hover {
+	background-color: #ffffee;
+}
+
+tr.odd {
+	background-color: #8baae4;
+}
+
+tr.odd:hover {
+	background-color: #ffffcc;
+}
+
+tr.list_header {
+	background-color: #dddddd;
+	text-align: left;
+	padding: 2px;
+}
+
+
+
+td.controls {
+	background-color: #ffffff;
+	text-size: small;
+}
+
+div.test_flag {
+	width: 94%;
+	background-color: #ffaaaa;
+	font-weight: bold;
+}
+
+div.nav_header {
+	width: 95%;
+	line-height: normal;
+	background-color: #dddddd;
+	text-align: left;
+}
+
+div.nav_footer {
+	width: 95%;
+	background-color: #dddddd;
+	text-align: right;
+	font-size: small;
+}

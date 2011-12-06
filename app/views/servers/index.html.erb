@@ -1,0 +1,25 @@
+<table class="list">
+  <tr class="list_header">
+    <th>Name</th>
+    <th width="25%">Location</th>
+    <th>Function</th>
+    <th width="15%"></th>
+  </tr>
+
+<% @servers.each do |server| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= link_to server.name, server %></td>
+    <td><%= link_to server.location, server %></td>
+    <td><%= server.function %></td>
+    <td class="controls">
+	<%= link_to 'Show', server %> |
+	<%= link_to 'Edit', edit_server_path(server) %> |
+	<%= link_to 'Destroy', server, confirm: 'Are you sure?', method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Server', new_server_path %>
