@@ -3,7 +3,9 @@
     <th>Name</th>
     <th width="25%">Location</th>
     <th>Function</th>
-    <th width="15%"></th>
+    <% if @authenticated == true %>
+	    <th width="15%"></th>
+    <% end %>
   </tr>
 
 <% @servers.each do |server| %>
@@ -11,15 +13,18 @@
     <td><%= link_to server.name, server %></td>
     <td><%= link_to server.location, server %></td>
     <td><%= server.function %></td>
-    <td class="controls">
-	<%= link_to 'Show', server %> |
-	<%= link_to 'Edit', edit_server_path(server) %> |
-	<%= link_to 'Destroy', server, confirm: 'Are you sure?', method: :delete %>
-    </td>
+    <% if @authenticated == true %>
+        <td class="controls">
+	    <%= link_to 'Show', server %> |
+	    <%= link_to 'Edit', edit_server_path(server) %> |
+	    <%= link_to 'Destroy', server, confirm: 'Are you sure?', method: :delete %>
+        </td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Server', new_server_path %>
+<% if @authenticated == true %>
+	<%= link_to 'New Server', new_server_path %>
+<% end %>

@@ -17,11 +17,11 @@ pre {
 
 a {
   color: #000;
+  text-decoration: none;
   &:visited {
-    color: #666; }
+    color: #000; }
   &:hover {
-    color: #fff;
-    background-color: #000; } }
+    color: #222; } }
 
 div {
   &.field, &.actions {

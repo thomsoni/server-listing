@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205184030) do
+ActiveRecord::Schema.define(:version => 20111216044939) do
 
   create_table "servers", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20111205184030) do
     t.string   "dependencies"
     t.string   "supported_by"
     t.integer  "test_server"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.integer  "rightslevel"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
