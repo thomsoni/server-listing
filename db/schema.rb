@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216044939) do
+ActiveRecord::Schema.define(:version => 20120117175310) do
 
   create_table "servers", :force => true do |t|
     t.string   "name"
@@ -21,19 +21,17 @@ ActiveRecord::Schema.define(:version => 20111216044939) do
     t.datetime "updated_at"
     t.string   "osver"
     t.string   "sqlver"
-    t.string   "vmloc"
     t.string   "function"
     t.string   "dependencies"
     t.string   "supported_by"
     t.integer  "test_server"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "password"
-    t.integer  "rightslevel"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "rebootinstruct"
+    t.string   "cryptinfo"
+    t.string   "authenticated"
+    t.string   "hw_cpu"
+    t.string   "hw_ram"
+    t.string   "hw_serial"
+    t.string   "hw_drivecap"
   end
 
 end

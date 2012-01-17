@@ -1,4 +1,39 @@
 class ServersController < ApplicationController
+
+  before_filter :authenticate_user!, :except => [:index] 
+
+  def get_server_digest_string(servername)
+
+    digest_obj = Serverdigest.find(:all, :conditions => { :servername => servername } ).first
+    if digest_obj == nil
+      raise "Could not obtain decryption digest for this server."
+    end
+    return digest_obj["digest"]
+
+  end
+
+  def generate_encrypt(servername, crypted_info)
+
+    digest_string = get_server_digest_string(servername)
+    digest = Digest::SHA1.hexdigest(digest_string)
+    encryptor = ActiveSupport::MessageEncryptor.new(digest)
+    final_string = encryptor.encrypt(crypted_info)
+    return final_string  
+  
+  end
+
+
+  def generate_decrypt(servername, crypted_info)
+
+    digest_string = get_server_digest_string(servername)
+    digest = Digest::SHA1.hexdigest(digest_string)
+    decryptor = ActiveSupport::MessageEncryptor.new(digest)
+    final_string = decryptor.decrypt(crypted_info)
+
+    return final_string
+
+  end
+
   # GET /servers
   # GET /servers.json
   def index
@@ -15,10 +50,24 @@ class ServersController < ApplicationController
   def show
     @server = Server.find(params[:id])
 
+    # decrypt our cryptinfo if user authorized to this server
+    if @server.authenticated.nil? == false and @server.authenticated.include? current_user.username
+      @auth_this_server = true; 
+    end 
+
+    if @server["cryptinfo"].nil? == false
+      final_string = generate_decrypt(@server.name, @server.cryptinfo)
+      @server.cryptinfo = final_string
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @server }
     end
+
+    rescue Exception => e
+	flash[:notice] = e.message
+
   end
 
   # GET /servers/new
@@ -29,12 +78,30 @@ class ServersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @server }
+
     end
   end
 
   # GET /servers/1/edit
   def edit
     @server = Server.find(params[:id])
+  
+    #is user authorized to view this server's sensitive info? also applies if set as "admin"
+    if @server.authenticated.nil? == false and ((@server.authenticated.include? current_user.username) or current_user.admin.eql?("true"))
+      @auth_this_server = true;
+    end
+
+    if @server["cryptinfo"] != nil
+
+      # get the digest for this server
+      final_string = generate_decrypt(@server["name"], @server["cryptinfo"])
+      @server["cryptinfo"] = final_string
+    end
+
+    rescue Exception => e
+      flash[:notice] = e.message
+
+
   end
 
   # POST /servers
@@ -42,8 +109,15 @@ class ServersController < ApplicationController
   def create
     @server = Server.new(params[:server])
 
+  # generate a digest string
+    digest_string = "#{@server["name"]}#{@server["ip"]}"
+
+  # assign digest to new record in digests db
+    @digest_obj = Serverdigest.new(:servername => @server["name"], :digest => digest_string)
+
+
     respond_to do |format|
-      if @server.save
+      if @server.save and @digest_obj.save
         format.html { redirect_to @server, notice: 'Server was successfully created.' }
         format.json { render json: @server, status: :created, location: @server }
       else
@@ -51,12 +125,24 @@ class ServersController < ApplicationController
         format.json { render json: @server.errors, status: :unprocessable_entity }
       end
     end
+
+    rescue Exception => e
+      flash[:notice] = e.message
+
   end
 
   # PUT /servers/1
   # PUT /servers/1.json
   def update
     @server = Server.find(params[:id])
+
+    # only attempt encryption if new data received
+    if params[:server][:cryptinfo].nil? == false
+
+      # get the digest for this server
+      final_string = generate_encrypt(@server["name"], params[:server][:cryptinfo])
+      params[:server][:cryptinfo] = final_string   
+    end
 
     respond_to do |format|
       if @server.update_attributes(params[:server])
@@ -67,6 +153,10 @@ class ServersController < ApplicationController
         format.json { render json: @server.errors, status: :unprocessable_entity }
       end
     end
+
+    rescue Exception => e
+      flash[:notice] = e.message
+
   end
 
   # DELETE /servers/1
@@ -75,8 +165,14 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
     @server.destroy
 
+    #destroy corresponding digest link
+    @digest = Serverdigest.find(:all, :conditions => { :servername => @server["name"] } ).first
+    if @digest != nil
+      @digest.destroy
+    end
+
     respond_to do |format|
-      format.html { redirect_to servers_url }
+      format.html { redirect_to servers_url, notice: 'Server was successfully deleted.' }
       format.json { head :ok }
     end
   end

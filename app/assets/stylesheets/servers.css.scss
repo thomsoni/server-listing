@@ -2,17 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+form {
+	display: inline;
+	& textarea {
+		font-family: inherit;
+		font-size: small;
+		resize: none;
+		&.sensitive {
+			background-color: #ffeeee;
+		}
+	}
+}
 
 
 table.list {
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-}
+	border-top: 1px #000 solid;
+	border-spacing: 0px;
+        & td {
+		padding: 1px;
+		border: 1px #fff solid;
+	}
 
-td {
-	padding: 2px;
-	border: 0px;
 }
 
 tr.even {
@@ -20,7 +33,7 @@ tr.even {
 }
 
 tr.even:hover {
-	background-color: #ffffee;
+	background-color: #cfe0ff;
 }
 
 tr.odd {
@@ -28,20 +41,63 @@ tr.odd {
 }
 
 tr.odd:hover {
-	background-color: #ffffcc;
+	background-color: #9bbaf4;
 }
 
 tr.list_header {
-	background-color: #dddddd;
+	background-color: #495e76;
+	color: #fff;
 	text-align: left;
-	padding: 2px;
+
 }
 
 
+td.form {
+	vertical-align: top;
+	&.header {
+	  padding-top: 10px;
+	  padding-bottom: 2px;
+	  font-family: inherit;
+	  font-weight: bold; 
+	}
+	&.base_info {
+	  border-top: 1px solid #000;
+	  border-bottom: 1px solid #000;
+	  background-color: #eee;
+	}
+	&.sw_info {
+	  border-top: 1px solid #000;
+	  border-bottom: 1px solid #000;
+	  background-color: #99bb99;
+	}	
+        &.hw_info {
+	  border-top: 1px solid #000;
+	  border-bottom: 1px solid #000;
+	  background-color: #9999bb;
+        }
+	&.emp_info {
+	  border-top: 1px solid #000;
+	  border-bottom: 1px solid #000;
+	  background-color: #bb9999;	
+	}
+	&.other_info {
+	  border-top: 1px solid #000;
+	  border-bottom: 1px solid #000;
+	}
+}
 
 td.controls {
 	background-color: #ffffff;
-	text-size: small;
+	text-align: right;
+	white-space: nowrap;
+	font-size: x-small; 
+}
+
+div.container {
+	display: block;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 div.test_flag {
@@ -51,32 +107,47 @@ div.test_flag {
 }
 
 div.info_header {
-	width: 95%;
+	width: 100%;
 	line-height: normal;
 	background-color: #dddddd;
 
 }
 div.nav_header {
-	width: 95%;
+	display: block;
+	height: 120px;
+	width: 100%;
 	line-height: normal;
-	background-color: #fff;
+	background-color: #c1c9ce;
 	text-align: left;
 	padding-left: 5px;
-	padding-top: 2px;
+	padding-top: 0px;
 	padding-bottom: 0px;
+	border-bottom: 1px solid #6d7b8b;
 	margin-left: auto;
 	margin-right: auto;
-	&.minor {
-		font-weight: bold;
-		width: 98%;
-		padding: 2px;
-		background-color: #e2f1ef;
+	&.h_image {
+		display: inline;
+		margin-left: 25px;
+		float: left;
+		width: 40%;
+		border: none;
 	}
+	&.h_text {
+		display: inline;
+		margin-right: 25px;
+		border: none;
+		text-align: right;
+		float: right;
+		width: 40%;
+	}
+
 }
 
 div.nav_footer {
-	width: 95%;
+	width: 99%;
 	background-color: #dddddd;
 	text-align: right;
 	font-size: small;
+	margin-left: auto;
+	margin-right: auto;
 }

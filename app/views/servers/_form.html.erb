@@ -11,42 +11,161 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :"Test Server?" %><br />
-    <%= f.check_box :test_server %>
-  </div>
-  <div class="field">
-    <%= f.label :ip %><br />
-    <%= f.text_field :ip %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :"Operating System" %><br />
-    <%= f.text_field :osver %>
-  </div>
-  <div class="field">
-    <%= f.label :"SQL Server Version" %><br />
-    <%= f.text_field :sqlver %>
-  </div>
-  <div class="field">
-    <%= f.label :"Server Function" %><br />
-    <%= f.text_field :function %>
-  </div>
-  <div class="field">
-    <%= f.label :"Dependencies" %><br />
-    <%= f.text_field :dependencies %>
-  </div>
-  <div class="field">
-    <%= f.label :"Supported By" %><br />
-    <%= f.text_field :supported_by %>
-  </div>
+   <%= f.label :test_server, "Test Server" %><br />
+   <%= f.check_box :test_server %>
+
+   <br>
+
+  <table border=0 cellspacing=0 width=100%>
+  <tr>
+  
+    <td class="form base_info">
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </div>
+    </td>
+
+    <td class="form base_info">
+      <div class="field">
+        <%= f.label :ip, "IP Address" %><br />
+        <%= f.text_field :ip %>
+      </div>
+    </td>
+
+    <td class="form base_info">
+      <div class="field">
+        <%= f.label :location, "Physical Location" %><br />
+        <%= f.text_field :location %>
+      </div>
+    </td>
+
+    <td class="form base_info">
+      <div class="field">
+        <%= f.label :function, "Server Function" %><br />
+        <%= f.text_field :function %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=3 class="form header">
+      Software Information
+    </td>
+    <td class="form">
+      
+    </td>
+  </tr>
+
+  <tr>
+    <td class="form sw_info">
+      <div class="field">
+        <%= f.label :osver, "Operating System" %><br />
+        <%= f.text_field :osver %>
+      </div>
+    </td>
+
+    <td class="form sw_info">
+      <div class="field">
+        <%= f.label :sqlver, "SQL Server Version" %><br />
+        <%= f.text_field :sqlver %>
+      </div>
+    </td>
+  
+    <td>
+      <div class="field">
+
+      </div>
+    </td>  
+
+    <td class="form other_info">
+      <div class="field">
+        <%= f.label :dependencies, "Dependencies (Relationships With Other Servers)" %><br />
+        <%= f.text_field :dependencies %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=4 class="form header">
+      Hardware Information
+    </td>
+  </tr>
+
+  <tr>
+    <td class="form hw_info">
+      <div class="field">
+        <%= f.label :hw_ram, "Amount of RAM" %><br />
+        <%= f.text_field :hw_ram %>
+      </div>
+    </td>
+    <td class="form hw_info">
+      <div class="field">
+        <%= f.label :hw_cpu, "CPU" %><br />
+        <%= f.text_field :hw_cpu %>
+      </div>
+    </td>
+    <td class="form hw_info">
+      <div class="field">
+        <%= f.label :hw_serial, "Server Serial Number" %><br />
+        <%= f.text_field :hw_serial %>
+      </div>
+    </td>
+    <td class="form hw_info">
+      <div class="field">
+        <%= f.label :hw_drivecap, "Hard Drive Capacity" %><br />
+        <%= f.text_field :hw_drivecap %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=4 class="form header">
+      Employees
+    </td>
+  </tr>
+  <tr>
+    <td colspan=2 class="form emp_info">
+      <div class="field">
+        <%= f.label :supported_by, "Supported By" %><br />
+        <%= f.text_field :supported_by %>
+      </div>
+    </td>
+    <td colspan=2 class="form emp_info">
+      <div class="field">
+        <%= f.label :authenticated, "Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)" %><br />
+        <%= f.text_field :authenticated %>
+      </div>
+    </td>
+   </tr>
+
+  <tr>
+    <td colspan=2 class="form header">
+      <%= f.label :rebootinstruct, "Reboot Instructions" %>
+    </td>
+    <td colspan=2 class="form header">
+      <%= f.label :cryptinfo, "Encrypted Information (Displayed to Authenticated Users on this Server Only)" %><br />
+    </td>
+
+  </tr>
+  <tr>
+    <td colspan=2>
+      <div class="field">
+        <%= f.text_area :rebootinstruct, :rows =>30, :cols =>60 %>
+      </div>
+    </td>
+    <td colspan=2 valign=top>
+      <div class="field">
+	<% if @auth_this_server == true %>
+          <%= f.text_area :cryptinfo, :rows =>30, :cols =>60, :class => "sensitive" %>
+	<% else %>
+	  <font color=#ff0000><b>You are not currently authorized to edit this information.</b></font>
+        <% end %>
+      </div>
+    </td>
+   </tr>
+  </table>
+
 
   <div class="actions">
     <%= f.submit %>

@@ -10,50 +10,141 @@
   </div>
 <% end %>
 
-<p>
-  <b>IP:</b>
-  <%= @server.ip %>
-</p>
 
-<p>
-  <b>Location:</b>
-  <%= @server.location %>
-</p>
+ <table border=0 cellspacing=0 width=100%>
+  <tr>
+  
+    <td class="form base_info">
+        <b>Name</b><br />
+        <%= @server.name %>
+    </td>
 
-<p>
-  <b>Operating System:</b>
-  <%= @server.osver %>
-</p>
+    <td class="form base_info">
+        <b>IP Address</b><br />
+        <%= @server.ip %>
+    </td>
 
-<p>
-  <b>SQL Version:</b>
-  <%= @server.sqlver %>
-</p>
+    <td class="form base_info">
+        <b>Physical Location</b><br />
+        <%= @server.location %>
+    </td>
 
-<p>
-  <b>VM Location:</b>
-  <%= @server.vmloc %>
-</p>
+    <td class="form base_info" width=30%>
+        <b>Applications Running On This Server</b><br />
+        <%= @server.function %>
+    </td>
+  </tr>
 
-<p>
-  <b>Server Function:</b>
-  <%= @server.function %>
-</p>
+  <tr>
+    <td colspan=3 class="form header">
+      <b>Software Information</b>
+    </td>
+    <td class="form">
+      
+    </td>
+  </tr>
 
-<p>
-  <b>Dependencies:</b>
-  <%= @server.dependencies %>
-</p>
+  <tr>
+    <td class="form sw_info">
+        <b>Operating System</b><br />
+        <%= @server.osver %>
+    </td>
 
-<p>
-  <b>Supported By:</b>
-  <%= @server.supported_by %>
-</p>
+    <td class="form sw_info">
+        <b>SQL Server Version</b><br />
+        <%= @server.sqlver %>
+    </td>
+  
+    <td>
+      <div class="field">
+
+      </div>
+    </td>  
+
+    <td class="form other_info">
+	<b>Dependencies (Servers Affected by Downtime)</b><br />
+        <%= @server.dependencies %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=4 class="form header">
+      Hardware Information
+    </td>
+  </tr>
+
+  <tr>
+    <td class="form hw_info">
+        <b>Amount of RAM</b><br />
+        <%= @server.hw_ram %>
+    </td>
+
+    <td class="form hw_info">
+        <b>CPU</b><br />
+        <%= @server.hw_cpu %>
+    </td>
+
+    <td class="form hw_info">
+        <b>Server Serial Number</b><br />
+        <%= @server.hw_serial %>
+    </td>
+
+    <td class="form hw_info">
+        <b>Hard Drive Capacity</b><br />
+        <%= @server.hw_drivecap %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=4 class="form header">
+      Employees
+    </td>
+  </tr>
+  <tr>
+    <td colspan=2 class="form emp_info">
+       <b>Supported By</b><br />
+        <%= @server.supported_by %>
+    </td>
+
+    <td colspan=2 class="form emp_info">
+        <b>Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)</b><br />
+        <%= @server.authenticated %>
+    </td>
+   </tr>
+
+  <tr>
+    <td colspan=2 width=50% class="form header">
+      Reboot Instructions
+    </td>
+    <td colspan=2 width=50% class="form header">
+      Encrypted Information (Displayed to Authenticated Users on this Server Only)
+    </td>
+
+  </tr>
+  <tr>
+    <td colspan=2>
+      <div class="field">
+        <pre><%= @server.rebootinstruct %></pre>
+      </div>
+    </td>
+    <td colspan=2 valign=top>
+      <div class="sensitive">
+	<% if @auth_this_server == true %>
+          <pre><%= @server.cryptinfo %></pre>
+	<% else %>
+	  <font color=#ff0000><b>You are not currently authorized to view this information.</b></font>
+        <% end %>
+      </div>
+    </td>
+   </tr>
+  </table>
 
 <p>
   <b>Record Was Last Updated:</b>
   <%= @server.updated_at.strftime('%m/%d/%Y %H:%M:%S') %>
 </p>
 
-<%= link_to 'Edit', edit_server_path(@server) %> |
+<% if @auth_this_server %>
+	<%= link_to 'Edit', edit_server_path(@server) %> |
+<% end %>
 <%= link_to 'Back', servers_path %>

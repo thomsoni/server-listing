@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Serverlist</title>
+  <title>Server Listing</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,19 +9,32 @@
 <body>
 
 <div class="nav_header">
-  <h1>Server List</h1>
-    <div class="nav_header minor">
-	All Production and Test Servers
+    <div class="nav_header h_image">
+      <%= image_tag("Craig.png") %>
     </div>
-  <br>
+    <div class="nav_header h_text">
+      <h1 style="nav_header h1">Casino Rama Servers</h1>
+
+	  <b>All Production and Test Servers</b>
+
+    </div>
 </div>
 
 
+<div class="container">
 
 <%= yield %>
 
+</div>
+
 <div class="nav_footer">
-<a href="/">Log in</a> | Server List v1.0 alpha
+ 
+  <% if user_signed_in? %>
+    Logged in as <b> <%= current_user.username %> (<%= current_user.email %>) </b> | <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Login", login_path %>
+  <% end %>  
+
 </div>
 
 </body>

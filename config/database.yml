@@ -23,3 +23,21 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+
+
+# definition for C.R.A.I.G's devise userbase
+craig_prod:
+  adapter: mysql2
+  database: craig_production
+  username: 
+  password: 
+  host:
+
+# local sqlite3 database for server authentication digests
+server_digests:
+  adapter: sqlite3
+  database: db/digests.sqlite3
+  pool: 5
+  timeout: 5000
+
+

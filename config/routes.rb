@@ -1,7 +1,11 @@
 Serverlist::Application.routes.draw do
-  resources :users
 
   resources :servers
+
+  devise_for :users do
+    get "login" => "devise/sessions#new"
+  end
+
 
   root :to => 'servers#index'
 
