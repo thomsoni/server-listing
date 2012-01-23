@@ -2,6 +2,15 @@ class ServersController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index] 
 
+  def auth_check(authusers)
+    if authusers.nil? == false and
+     ((authusers.include? current_user.username) or current_user.admin.eql?("true"))
+      return true
+    else 
+      return false
+    end
+  end
+
  
   def get_server_digest_string(servername)
 
@@ -54,10 +63,11 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
 
     # decrypt our cryptinfo if user authorized to this server
-    if @server.authenticated.nil? == false and ((@server.authenticated.include? current_user.username) or current_user.admin.eql?("true"))
-      @auth_this_server = true; 
+    if auth_check(@server.authenticated)
+      @auth_this_server = true
     end 
 
+    # decrypt server's cryptinfo and reassign to object
     if @server["cryptinfo"].nil? == false
       final_string = generate_decrypt(@server.name, @server.cryptinfo)
       @server.cryptinfo = final_string
@@ -90,9 +100,9 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
   
     #is user authorized to view this server's sensitive info? also applies if set as "admin"
-    if @server.authenticated.nil? == false and ((@server.authenticated.include? current_user.username) or current_user.admin.eql?("true"))
-      @auth_this_server = true;
-    end
+    if auth_check(@server.authenticated)
+      @auth_this_server = true
+    end 
 
     if @server["cryptinfo"] != nil
 
