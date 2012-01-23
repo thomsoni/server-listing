@@ -2,6 +2,7 @@ class ServersController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index] 
 
+ 
   def get_server_digest_string(servername)
 
     digest_obj = Serverdigest.find(:all, :conditions => { :servername => servername } ).first
@@ -12,6 +13,7 @@ class ServersController < ApplicationController
 
   end
 
+ 
   def generate_encrypt(servername, crypted_info)
 
     digest_string = get_server_digest_string(servername)
@@ -23,6 +25,7 @@ class ServersController < ApplicationController
   end
 
 
+ 
   def generate_decrypt(servername, crypted_info)
 
     digest_string = get_server_digest_string(servername)
@@ -51,7 +54,7 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
 
     # decrypt our cryptinfo if user authorized to this server
-    if @server.authenticated.nil? == false and @server.authenticated.include? current_user.username
+    if @server.authenticated.nil? == false and ((@server.authenticated.include? current_user.username) or current_user.admin.eql?("true"))
       @auth_this_server = true; 
     end 
 

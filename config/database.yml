@@ -31,7 +31,7 @@ craig_prod:
   database: craig_production
   username: 
   password: 
-  host:
+  host: 
 
 # local sqlite3 database for server authentication digests
 server_digests:
