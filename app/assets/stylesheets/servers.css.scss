@@ -131,6 +131,9 @@ div.nav_header {
 		float: left;
 		width: 40%;
 		border: none;
+		& a img {
+			border: 0px;
+		}
 	}
 	&.h_text {
 		display: inline;
