@@ -30,6 +30,9 @@ table.list {
 
 tr.even {
 	background-color: #BFD0F0;
+	&.test {
+		background-color: #BFF0D0;
+	}
 }
 
 tr.even:hover {
@@ -38,6 +41,9 @@ tr.even:hover {
 
 tr.odd {
 	background-color: #8baae4;
+	&.test {
+		background-color: #8be4aa;
+	}
 }
 
 tr.odd:hover {
@@ -74,6 +80,12 @@ td.form {
 	  border-top: 1px solid #000;
 	  border-bottom: 1px solid #000;
 	  background-color: #9999bb;
+	  &.upper {
+	    border-bottom: 0px;
+	  }
+	  &.lower {
+	    border-top: 0px;
+	  }
         }
 	&.emp_info {
 	  border-top: 1px solid #000;
@@ -113,7 +125,7 @@ div.info_header {
 }
 div.nav_header {
 	display: block;
-	height: 120px;
+	height: 105px;
 	width: 100%;
 	line-height: normal;
 	background-color: #c1c9ce;

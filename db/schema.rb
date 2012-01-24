@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117175310) do
+ActiveRecord::Schema.define(:version => 20120124145524) do
 
   create_table "servers", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(:version => 20120117175310) do
     t.string   "hw_ram"
     t.string   "hw_serial"
     t.string   "hw_drivecap"
+    t.integer  "vm_server"
+    t.integer  "assetno"
+    t.string   "updated_by"
+    t.string   "wsus_date"
   end
 
 end

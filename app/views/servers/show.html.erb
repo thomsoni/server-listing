@@ -10,15 +10,14 @@
   </div>
 <% end %>
 
+<% if @server.vm_server == 1 %>
+  <div class="test_flag">
+    This is a VM server
+  </div>
+<% end %>
 
  <table border=0 cellspacing=0 width=100%>
   <tr>
-  
-    <td class="form base_info">
-        <b>Name</b><br />
-        <%= @server.name %>
-    </td>
-
     <td class="form base_info">
         <b>IP Address</b><br />
         <%= @server.ip %>
@@ -29,14 +28,18 @@
         <%= @server.location %>
     </td>
 
-    <td class="form base_info" width=30%>
+    <td class="form base_info">
         <b>Applications Running On This Server</b><br />
         <%= @server.function %>
+    </td>
+    <td class="form base_info">
+	<b>Dependencies (Servers Affected by Downtime)</b><br />
+        <%= @server.dependencies %>
     </td>
   </tr>
 
   <tr>
-    <td colspan=3 class="form header">
+    <td colspan=4 class="form header">
       <b>Software Information</b>
     </td>
     <td class="form">
@@ -56,15 +59,11 @@
     </td>
   
     <td>
-      <div class="field">
-
-      </div>
-    </td>  
-
-    <td class="form other_info">
-	<b>Dependencies (Servers Affected by Downtime)</b><br />
-        <%= @server.dependencies %>
     </td>
+    <td class="form other_info">
+	<b>Last WSUS Update</b><br />
+        <%= @server.wsus_date %>
+    </td>  
   </tr>
 
   <tr>
@@ -74,7 +73,7 @@
   </tr>
 
   <tr>
-    <td class="form hw_info">
+    <td class="form hw_info upper">
         <b>Amount of RAM</b><br />
         <%= @server.hw_ram %>
     </td>
@@ -94,6 +93,14 @@
         <%= @server.hw_drivecap %>
     </td>
   </tr>
+  <tr>
+    <td class="form hw_info lower">
+        <b>HWDB Asset Number</b><br />
+        <%= @server.assetno %>
+    </td>
+    <td colspan=3>
+    </td>
+  </tr>
 
   <tr>
     <td colspan=4 class="form header">
@@ -102,12 +109,12 @@
   </tr>
   <tr>
     <td colspan=2 class="form emp_info">
-       <b>Supported By</b><br />
+       <b>Physical Server Supported By</b><br />
         <%= @server.supported_by %>
     </td>
 
     <td colspan=2 class="form emp_info">
-        <b>Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)</b><br />
+        <b>Additional Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)</b><br />
         <%= @server.authenticated %>
     </td>
    </tr>
@@ -140,8 +147,10 @@
   </table>
 
 <p>
-  <b>Record Was Last Updated:</b>
+  <b>Record was last updated:</b>
   <%= @server.updated_at.strftime('%m/%d/%Y %H:%M:%S') %>
+  <b> by user: </b>
+  <%= @server.updated_by %>
 </p>
 
 <% if @auth_this_server %>

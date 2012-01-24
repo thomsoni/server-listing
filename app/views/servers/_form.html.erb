@@ -11,21 +11,21 @@
     </div>
   <% end %>
 
-   <%= f.label :test_server, "Test Server" %><br />
-   <%= f.check_box :test_server %>
-
-   <br>
-
   <table border=0 cellspacing=0 width=100%>
   <tr>
-  
-    <td class="form base_info">
-      <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name %>
-      </div>
+    <td>
+     <%= f.label :test_server, "Test Server" %><br />
+     <%= f.check_box :test_server %>
     </td>
+    <td>
+     <%= f.label :test_server, "VM Server" %><br />
+     <%= f.check_box :vm_server %>
+    </td>
+    <td colspan=2>
+    </td>
+  </tr>
 
+  <tr>
     <td class="form base_info">
       <div class="field">
         <%= f.label :ip, "IP Address" %><br />
@@ -42,8 +42,14 @@
 
     <td class="form base_info">
       <div class="field">
-        <%= f.label :function, "Server Function" %><br />
+        <%= f.label :function, "Server Function and Installed Applications" %><br />
         <%= f.text_field :function %>
+      </div>
+    </td>
+    <td class="form base_info">
+      <div class="field">
+        <%= f.label :dependencies, "Dependencies (Relationships With Other Servers)" %><br />
+        <%= f.text_field :dependencies %>
       </div>
     </td>
   </tr>
@@ -71,19 +77,18 @@
         <%= f.text_field :sqlver %>
       </div>
     </td>
-  
     <td>
       <div class="field">
 
       </div>
-    </td>  
-
+    </td>
     <td class="form other_info">
       <div class="field">
-        <%= f.label :dependencies, "Dependencies (Relationships With Other Servers)" %><br />
-        <%= f.text_field :dependencies %>
+        <%= f.label :wsus_date, "Last WSUS Update" %><br />
+        <%= f.text_field :wsus_date, :id => "wsus_date" %>
       </div>
     </td>
+
   </tr>
 
   <tr>
@@ -93,7 +98,7 @@
   </tr>
 
   <tr>
-    <td class="form hw_info">
+    <td class="form hw_info upper">
       <div class="field">
         <%= f.label :hw_ram, "Amount of RAM" %><br />
         <%= f.text_field :hw_ram %>
@@ -118,6 +123,16 @@
       </div>
     </td>
   </tr>
+  <tr>
+    <td class="form hw_info lower">
+      <div class="field">
+        <%= f.label :assetno, "HWDB Asset Number" %><br />
+        <%= f.text_field :assetno, :size => 6 %>
+      </div>
+    </td>
+    <td colspan=3>
+    </td>
+  </tr>
 
   <tr>
     <td colspan=4 class="form header">
@@ -127,13 +142,13 @@
   <tr>
     <td colspan=2 class="form emp_info">
       <div class="field">
-        <%= f.label :supported_by, "Supported By" %><br />
+        <%= f.label :supported_by, "Physical Server Supported By" %><br />
         <%= f.text_field :supported_by %>
       </div>
     </td>
     <td colspan=2 class="form emp_info">
       <div class="field">
-        <%= f.label :authenticated, "Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)" %><br />
+        <%= f.label :authenticated, "Additional Users Authenticated To This Server (C.R.A.I.G. username, comma-separated)" %><br />
         <%= f.text_field :authenticated %>
       </div>
     </td>

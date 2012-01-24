@@ -129,6 +129,8 @@ class ServersController < ApplicationController
     @digest_obj = Serverdigest.new(:servername => @server["name"], :digest => digest_string)
 
 
+    @server["updated_by"] = current_user.username
+
     respond_to do |format|
       if @server.save and @digest_obj.save
         format.html { redirect_to @server, notice: 'Server was successfully created.' }
@@ -157,6 +159,8 @@ class ServersController < ApplicationController
       params[:server][:cryptinfo] = final_string   
     end
 
+    @server["updated_by"] = current_user.username
+    
     respond_to do |format|
       if @server.update_attributes(params[:server])
         format.html { redirect_to @server, notice: 'Server was successfully updated.' }

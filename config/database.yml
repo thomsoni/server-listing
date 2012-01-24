@@ -29,9 +29,9 @@ production:
 craig_prod:
   adapter: mysql2
   database: craig_production
-  username: 
-  password: 
-  host: 
+  username: craig
+  password: craig
+  host: 10.2.1.252
 
 # local sqlite3 database for server authentication digests
 server_digests:
