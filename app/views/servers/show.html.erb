@@ -18,26 +18,38 @@
 
  <table border=0 cellspacing=0 width=100%>
   <tr>
-    <td class="form base_info">
+    <td class="form base_info upper">
         <b>IP Address</b><br />
         <%= @server.ip %>
     </td>
 
-    <td class="form base_info">
+    <td class="form base_info upper">
         <b>Physical Location</b><br />
         <%= @server.location %>
     </td>
 
-    <td class="form base_info">
+    <td class="form base_info upper">
         <b>Applications Running On This Server</b><br />
         <%= @server.function %>
     </td>
-    <td class="form base_info">
+    <td class="form base_info upper">
 	<b>Dependencies (Servers Affected by Downtime)</b><br />
         <%= @server.dependencies %>
     </td>
   </tr>
+  <tr>
+    <td class="form base_info lower" colspan=2>
+    </td>
 
+    <td class="form base_info lower">
+        <b>Applications Supported By</b><br />
+        <%= @server.app_supported_by %>
+    </td>
+    <td class="form base_info lower">
+        <b>Departments Affected by Downtime</b><br />
+        <%= @server.dept_affected %>
+    </td>
+  </tr>
   <tr>
     <td colspan=4 class="form header">
       <b>Software Information</b>
@@ -78,17 +90,17 @@
         <%= @server.hw_ram %>
     </td>
 
-    <td class="form hw_info">
+    <td class="form hw_info upper">
         <b>CPU</b><br />
         <%= @server.hw_cpu %>
     </td>
 
-    <td class="form hw_info">
+    <td class="form hw_info upper">
         <b>Server Serial Number</b><br />
         <%= @server.hw_serial %>
     </td>
 
-    <td class="form hw_info">
+    <td class="form hw_info upper">
         <b>Hard Drive Capacity</b><br />
         <%= @server.hw_drivecap %>
     </td>
@@ -98,7 +110,7 @@
         <b>HWDB Asset Number</b><br />
         <%= @server.assetno %>
     </td>
-    <td colspan=3>
+    <td class="form hw_info lower" colspan=3>
     </td>
   </tr>
 

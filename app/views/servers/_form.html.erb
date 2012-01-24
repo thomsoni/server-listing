@@ -26,31 +26,45 @@
   </tr>
 
   <tr>
-    <td class="form base_info">
+    <td class="form base_info upper">
       <div class="field">
         <%= f.label :ip, "IP Address" %><br />
         <%= f.text_field :ip %>
       </div>
     </td>
 
-    <td class="form base_info">
+    <td class="form base_info upper">
       <div class="field">
         <%= f.label :location, "Physical Location" %><br />
         <%= f.text_field :location %>
       </div>
     </td>
 
-    <td class="form base_info">
+    <td class="form base_info upper">
       <div class="field">
         <%= f.label :function, "Server Function and Installed Applications" %><br />
         <%= f.text_field :function %>
       </div>
     </td>
-    <td class="form base_info">
+    <td class="form base_info upper">
       <div class="field">
         <%= f.label :dependencies, "Dependencies (Relationships With Other Servers)" %><br />
         <%= f.text_field :dependencies %>
       </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="form base_info lower" colspan=2>
+    </td>
+
+    <td class="form base_info lower">
+        <%= f.label :app_supported_by, "Applications Supported By" %><br />
+        <%= f.text_field :app_supported_by %>
+    </td>
+
+    <td class="form base_info lower">
+        <%= f.label :dept_affected, "Departments Affected by Downtime" %><br />
+        <%= f.text_field :dept_affected %>
     </td>
   </tr>
 
@@ -104,19 +118,19 @@
         <%= f.text_field :hw_ram %>
       </div>
     </td>
-    <td class="form hw_info">
+    <td class="form hw_info upper">
       <div class="field">
         <%= f.label :hw_cpu, "CPU" %><br />
         <%= f.text_field :hw_cpu %>
       </div>
     </td>
-    <td class="form hw_info">
+    <td class="form hw_info upper">
       <div class="field">
         <%= f.label :hw_serial, "Server Serial Number" %><br />
         <%= f.text_field :hw_serial %>
       </div>
     </td>
-    <td class="form hw_info">
+    <td class="form hw_info upper">
       <div class="field">
         <%= f.label :hw_drivecap, "Hard Drive Capacity" %><br />
         <%= f.text_field :hw_drivecap %>
@@ -130,7 +144,7 @@
         <%= f.text_field :assetno, :size => 6 %>
       </div>
     </td>
-    <td colspan=3>
+    <td class="form hw_info lower" colspan=3>
     </td>
   </tr>
 

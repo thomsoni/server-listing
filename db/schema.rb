@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124145524) do
+ActiveRecord::Schema.define(:version => 20120124194445) do
 
   create_table "servers", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120124145524) do
     t.integer  "assetno"
     t.string   "updated_by"
     t.string   "wsus_date"
+    t.string   "app_supported_by"
+    t.string   "dept_affected"
   end
 
 end

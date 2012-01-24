@@ -2,7 +2,7 @@
 
 <table class="list">
   <tr class="list_header">
-    <th width="10%">Name</th>
+    <th width="15%">Name</th>
     <th width="10%">IP</th>
     <th>Function</th>
     <% if user_signed_in? %>
@@ -12,7 +12,10 @@
 
 <% @servers.each do |server| %>
   <tr class="<%= cycle("even", "odd") %><% if server.test_server == 1 %> test<% end %>">
-    <td><%= link_to server.name, server %></td>
+    <td><%= link_to server.name, server %>
+      <% if server.test_server ==1 %> (Test)<% end %>
+      <% if server.vm_server ==1 %> (VM)<% end %>
+    </td>
     <td><%= link_to server.ip, server %></td>
     <td><%= server.function %></td>
     <% if user_signed_in? %>

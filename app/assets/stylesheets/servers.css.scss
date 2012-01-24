@@ -31,7 +31,10 @@ table.list {
 tr.even {
 	background-color: #BFD0F0;
 	&.test {
-		background-color: #BFF0D0;
+		background-color: #3e9749;
+		&:hover {
+		  background-color: #4ea759;
+		}
 	}
 }
 
@@ -42,7 +45,10 @@ tr.even:hover {
 tr.odd {
 	background-color: #8baae4;
 	&.test {
-		background-color: #8be4aa;
+		background-color: #5ebd69;
+		&:hover {
+		  background-color: #6ecd79;
+		}
 	}
 }
 
@@ -67,9 +73,13 @@ td.form {
 	  font-weight: bold; 
 	}
 	&.base_info {
-	  border-top: 1px solid #000;
-	  border-bottom: 1px solid #000;
 	  background-color: #eee;
+	  &.upper {
+	    border-top: 1px solid #000;
+	  }
+	  &.lower {
+	    border-bottom: 1px solid #000;
+	  }
 	}
 	&.sw_info {
 	  border-top: 1px solid #000;
@@ -77,14 +87,12 @@ td.form {
 	  background-color: #99bb99;
 	}	
         &.hw_info {
-	  border-top: 1px solid #000;
-	  border-bottom: 1px solid #000;
 	  background-color: #9999bb;
 	  &.upper {
-	    border-bottom: 0px;
+	    border-top: 1px solid #000;
 	  }
 	  &.lower {
-	    border-top: 0px;
+	    border-bottom: 1px solid #000;
 	  }
         }
 	&.emp_info {
