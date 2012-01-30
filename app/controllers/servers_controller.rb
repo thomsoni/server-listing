@@ -4,7 +4,7 @@ class ServersController < ApplicationController
 
   def auth_check(authusers)
     if authusers.nil? == false and
-     ((authusers.include? current_user.username) or current_user.admin.eql?("true"))
+     ((authusers.include? current_user.username) or current_user.admin_sl.eql?("true"))
       return true
     else 
       return false
