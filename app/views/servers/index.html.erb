@@ -34,6 +34,6 @@
 </table>
 
 <br />
-<% if user_signed_in? and current_user["admin"].eql?("true") %>
+<% if user_signed_in? and current_user["admin_sl"].eql?("true") %>
 	<%= link_to 'Create New Server', new_server_path %>
 <% end %>
