@@ -15,7 +15,7 @@
   <tr>
     <td>
      <%= f.label :test_server, "Test Server" %><br />
-     <%= f.check_box :test_server %>
+       <%= f.check_box :test_server %>
     </td>
     <td>
      <%= f.label :vm_server, "VM Server" %><br />
@@ -26,6 +26,17 @@
   </tr>
 
   <tr>
+    <td class="form base_info upper">
+      <div class="field">
+        <%= f.label :name, "Name" %><br />
+	<% if @creating_new %>
+          <%= f.text_field :name %>
+	<% else %>
+	  <%= f.text_field :name, :disabled => "disabled" %>
+	<% end %>
+      </div>
+    </td>
+
     <td class="form base_info upper">
       <div class="field">
         <%= f.label :ip, "IP Address" %><br />
@@ -46,17 +57,16 @@
         <%= f.text_field :function %>
       </div>
     </td>
-    <td class="form base_info upper">
+  </tr>
+  <tr>
+    <td class="form base_info lower">
+    </td>
+    <td class="form base_info lower">
       <div class="field">
         <%= f.label :dependencies, "Dependencies (Relationships With Other Servers)" %><br />
         <%= f.text_field :dependencies %>
       </div>
     </td>
-  </tr>
-  <tr>
-    <td class="form base_info lower" colspan=2>
-    </td>
-
     <td class="form base_info lower">
         <%= f.label :app_supported_by, "Applications Supported By" %><br />
         <%= f.text_field :app_supported_by %>

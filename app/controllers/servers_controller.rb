@@ -87,6 +87,7 @@ class ServersController < ApplicationController
   # GET /servers/new.json
   def new
     @server = Server.new
+    @creating_new = true
 
     respond_to do |format|
       format.html # new.html.erb
